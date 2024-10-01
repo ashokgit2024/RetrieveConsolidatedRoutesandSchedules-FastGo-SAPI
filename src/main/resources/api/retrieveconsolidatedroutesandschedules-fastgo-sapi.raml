@@ -1,0 +1,73 @@
+#%RAML 1.0
+title: RetrieveConsolidatedRoutesAndSchedules FastGo SAPI
+description: This RAMl File will fetch Route and Schedule from FastGo Transport provider.
+
+uses:
+  commonBusinessLibrary:  /libraries/common/traits/common-Business-library.raml
+  commonBusinessError: libraries/common/traits/common-Business-library.raml
+  routes: /libraries/routes/routesBusiness-library.raml
+  schedules: /libraries/schedules/schedulesBusiness-library.raml 
+   
+/{transporrtType}:
+  /{transportCompany}:
+    /routes:
+      get:
+        headers:
+        is:
+          - commonBusinessLibrary.transactionId
+        responses:
+          200:
+            body:
+              application/json:
+                type: routes.getRoutesdataType
+                example: !include /libraries/routes/examples/getRoutes200-Response.json        
+          400:
+            body:
+              application/json:
+                type: commonBusinessLibrary.commonBusinessError   
+                example: !include /libraries/common/examples/400Response.json        
+          404:
+            body:
+              application/json:
+                type: commonBusinessLibrary.commonBusinessError        
+                example: !include /libraries/common/examples/404Response.json
+          500:
+            body:
+              application/json:
+                type: commonBusinessLibrary.commonBusinessError   
+                example: !include /libraries/common/examples/500Response.json
+    /schedules:
+      get:
+        headers:
+        is:
+          - commonBusinessLibrary.transactionId
+          - commonBusinessLibrary.departureLocationCode
+          - commonBusinessLibrary.destinationLocationCode
+        responses:
+          200:
+            body:
+              application/json:
+                type: schedules.getSchedulesdataType
+                example: !include /libraries/schedules/examples/getSchedules-200-Response.json
+          400:
+            body:
+              application/json:
+                type: commonBusinessLibrary.commonBusinessError       
+                example: !include /libraries/common/examples/400Response.json        
+          404:
+            body:
+              application/json:
+                type: commonBusinessLibrary.commonBusinessError        
+                example: !include /libraries/common/examples/404Response.json
+          500:
+            body:
+              application/json:
+                type: commonBusinessLibrary.commonBusinessError   
+                example: !include /libraries/common/examples/500Response.json         
+                  
+                
+              
+                                                                                                                                                                                                                  
+                        
+
+              

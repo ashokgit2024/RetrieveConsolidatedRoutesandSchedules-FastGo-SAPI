@@ -1,0 +1,4 @@
+%dw 2.0
+
+type auto_a0ab17c0_b06d_4500_90d1_82fd7a4ffbf0_Input_Variables_transportCompany = Any
+
